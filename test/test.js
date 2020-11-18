@@ -1,18 +1,26 @@
+
 const nu = require('../lib/nphump_util.js')
 
-function timer_check(res)
+let test_number = 0;
+
+function running(test)
 {
-	if (res == 'Expired')
-	{
-		console.log('Timer - worked');
-	}
-	else
-	{
-		console.log('Timer - unexpected output: ' + res);
-		process.exit(1);
-	}
+	console.log("\nRunning test #" + test_number++ + " (" + test + ") ...");
 }
 
-let timer1 = new nu.Timer(1000);
-timer1.promise.then(timer_check).catch(timer_check);
+function output(data)
+{
+	console.log("   output:" + data);
+}
+
+running("Call 'hostname' command with Program class");
+
+(new nu.Process("hostname"))
+	.then((data) => output(data))
+	.then(() => running("Expiring Timer"))
+	.then(() => {return new nu.Timer(1000)})
+	.then((data) => {if (data !== 'Expired') throw "Unexpected output from Timer: " + data})
+	.then(() => console.log("\nSUCCESSFUL"))
+	.catch((err) => {console.warn("\nFAILED: " + err); process.exit(1);})
+
 
