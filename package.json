@@ -1,6 +1,6 @@
 {
   "name": "nphump_util",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Neil Humphreys node utilities",
   "main": "lib/nphump_util.js",
   "scripts": {
