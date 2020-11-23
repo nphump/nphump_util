@@ -15,10 +15,10 @@ function output(data)
 
 running("Call 'hostname' command with Program class");
 
-(new nu.Process("hostname"))
+(nu.Run("hostname"))
 	.then((data) => output(data))
 	.then(() => running("Expiring Timer"))
-	.then(() => {return new nu.Timer(10)})
+	.then(() => nu.Sleep(10))
 	.then((data) => {if (data !== 'Expired') throw "Unexpected output from Timer: " + data})
 	.then(() => console.log("\nSUCCESSFUL"))
 	.catch((err) => {console.warn("\nFAILED: " + err); process.exit(1);})
