@@ -1,6 +1,6 @@
 {
   "name": "nphump_util",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Neil Humphreys node utilities",
   "main": "lib/nphump_util.js",
   "scripts": {
@@ -14,5 +14,8 @@
     "nphump"
   ],
   "author": "Neil Humphreys",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "child_process": "^1.0.2"
+  }
 }
